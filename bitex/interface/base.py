@@ -52,7 +52,6 @@ class Interface(metaclass=abc.ABCMeta):
         """
         raise NotImplementedError
 
-    @abc.abstractmethod
     def is_supported(self, pair):
         """
         Check if the given pair is present in self._supported_pairs.
@@ -73,14 +72,12 @@ class Interface(metaclass=abc.ABCMeta):
             return True
         return False
 
-    @abc.abstractmethod
     def request(self, verb, endpoint, authenticate=False, **req_kwargs):
         """Query the API and return its result.
 
         :param verb: HTTP verb (GET, PUT, DELETE, etc)
         :param endpoint: Str
-        :param authenticate: Bool, whether to call private_query or public_query
-                             method.
+        :param authenticate: Bool, whether to call private_query or public_query method.
         :param req_kwargs: Kwargs to pass to _query / :class:`requests.Request()`
         :raise: UnsupportedPairError
         :return: :class:`requests.Response() Obj`
